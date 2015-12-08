@@ -4,7 +4,9 @@ Integrantes:
 * Nicole Macarena Henríquez Sepúlveda
 * Katherine Marcela Liberona Irarrazabal
 * Maximiliano Felipe Andrés Pérez Rodríguez
+
 ##Bibliotecas y paquetes utilizados
+
 La mayoría de los paquetes y librerias de python son instaladas fácilmente por *pip* que es un gestor de paquetes proporcionados por python.
 
 **Scipy:** Biblioteca de codigo abierto, enfocada principalmente en el área matemática, ciencias e ingeniería. Permite utilizar funciones que cumplen el mismo objetivo que las de *Matlab*, pero en *Python*. El uso de esta biblioteca en el programa es a tráves de la función *FFT*, la cual permite calcular la transformada de Fourier de los datos obtenidos de un audio, dichos datos tanbien son obtenidos usando *Scipy*.
