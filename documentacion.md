@@ -1,5 +1,6 @@
 # Morse-Decoder
 **Decodificador de código morse a partir de audio de transmisiones satelitales**
+
 Integrantes:
 * Nicole Macarena Henríquez Sepúlveda
 * Katherine Marcela Liberona Irarrazabal
