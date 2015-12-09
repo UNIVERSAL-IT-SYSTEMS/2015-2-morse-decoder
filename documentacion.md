@@ -22,5 +22,5 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente por
 
 ##Funcionalidad
 
-El programa actual creado está basado principalmente en uno encontrado en internet creado por [haskell](https://sites.google.com/site/haskell102/home/frequency-analysis-of-audio-file-with-python-numpy-scipy), el cuál tuvo que ser estudiado y modificado para que sea capaz de trabajar frente a cualquier formato de audio del tipo punto wav.
+El programa actual creado está basado principalmente en uno encontrado en internet creado por [haskell](https://sites.google.com/site/haskell102/home/frequency-analysis-of-audio-file-with-python-numpy-scipy), el cual tuvo que ser estudiado y modificado para que sea capaz de trabajar frente a cualquier formato de audio del tipo punto wav.
 
