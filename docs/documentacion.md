@@ -29,3 +29,8 @@ Luego se realiza el llamado de la función plotFrecuencia, la cual recibe la inf
 
 Ambas gráficas obtenidas por medio de Matplotlib se muestran en una nueva ventana, donde además puede ser descargada.
 
+Para utilizar el programa los pasos a seguir son:
+* Abrir una terminal en la carpeta que contiene el programa.
+* Ejecutar el programa con el comando "python3 ventana.py".
+* Se mostrará una ventana, donde al presionar el botón se selecciona el audio que se desea utilizar.
+* Finalmente se muestra la gráfica en función del tiempo y la frecuencia.
