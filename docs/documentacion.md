@@ -22,7 +22,7 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente med
 
 [**PyDub:**](https://github.com/jiaaro/pydub/blob/master/API.markdown) Como el módulo pylab de *Matplotlib* trabaja nativamente con .wav para plotear los datos es necesario el uso de esta biblioteca para realizar la conversión de mp3 a wav.
 
-![Gráfico](http://prntscr.com/9ppnch)
+![Gráfico](http://i.imgur.com/1sijCzJ.png)
 
 ##Funcionalidad
 
