@@ -140,8 +140,8 @@ def plotearAudio(f=f):
 	toolbar.update()
 	canvas._tkcanvas.pack(fill=tk.BOTH, expand = True)
 
-	label2 = tk.Label(self, text="Traducción... pronto", fg="blue", font=LARGE_FONT) #solo para dejar un espacio entre botón y gráfico
-	label2.pack(pady=10) 
+	#label2 = tk.Label(app, text="Traducción... pronto", fg="blue", font=LARGE_FONT) #solo para dejar un espacio entre botón y gráfico
+	#label2.pack(pady=10) 
 
 class StartPage(tk.Frame):
 
