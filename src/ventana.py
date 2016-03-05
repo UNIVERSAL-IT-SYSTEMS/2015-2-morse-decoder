@@ -1,3 +1,4 @@
+#testeando rama
 from scipy import fft, arange, ifft
 from numpy import sin, linspace, pi
 from scipy.io.wavfile import read,write
@@ -48,6 +49,8 @@ def plotTiempo(data,rate,f=f):
 	a = f.add_subplot(5,1,1)
 	a.plot(t, data)
 	return f
+
+#COMENTARIOOOOOOOOOOOOOOOO
 
 #PLOT DEL DOMINIO DE LA FRECUENCIA
 #Entrada: datos del audio
