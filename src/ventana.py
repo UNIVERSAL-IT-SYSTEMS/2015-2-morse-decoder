@@ -14,7 +14,7 @@ from matplotlib import style
 
 LARGE_FONT= ("Verdana", 12)
 style.use("ggplot")
-forma = Figure(figsize=(3,3),dpi=100)
+forma = Figure(figsize=(5,1),dpi=100)
 
 class ventanita(tk.Tk):
 	def __init__(self, *args, **kwargs):
@@ -35,7 +35,6 @@ class ventanita(tk.Tk):
 		frame = self.frames[cont]
 		frame.tkraise()
 
-#CAPTURA DE AUDIO 
 def plotearAudio(forma=forma):
 	app.fileName = filedialog.askopenfilename( filetypes = ( ("All files","*.*"), ("archivos wav","*.wav" ),("archivos mp3","*.mp3") ) )
 	nombreAudio = app.fileName
@@ -43,16 +42,11 @@ def plotearAudio(forma=forma):
 	if tipoAudio == 0:
 		nombreAudio = convertor(nombreAudio)
 	
-	rate,info=read(nombreAudio)		#función de doble retorno?
-	dimension = info[0].size		#data: datos del audio (arreglo de numpy)
-	if dimension==1:				#rate: frecuencia de muestreo
-		data = info
-	else:
-		data = info[:,dimension-1]
-
+	rate, data = leerAudio(nombreAudio)
+	#data = filter_passband(data,rate)
 	plotTiempo(data,rate,forma)
 	plotFrecuencia(data,rate,forma)
-	spectrum(data,forma)
+	spectrum(data,forma,rate)
 
 	canvas = FigureCanvasTkAgg(forma, app)
 	canvas.show()
