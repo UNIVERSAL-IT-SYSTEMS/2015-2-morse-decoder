@@ -26,52 +26,71 @@ class ventanita(tk.Tk):
 		container.grid_columnconfigure(0, weight=1)
 		self.frames = {}
 
-		frame = StartPage(container, self)
-		self.frames[StartPage] = frame
+		frame = start_page(container, self)
+		self.frames[start_page] = frame
 		frame.grid(row=0, column=0, sticky="nsew")
-		self.show_frame(StartPage)
+		self.show_frame(start_page)
 
 	def show_frame(self, cont):
 		frame = self.frames[cont]
 		frame.tkraise()
 
-def plotearAudio(forma=forma):
-	app.fileName = filedialog.askopenfilename( filetypes = ( ("All files","*.*"), ("archivos wav","*.wav" ),("archivos mp3","*.mp3") ) )
-	nombreAudio = app.fileName
-	tipoAudio = informacionAudio(nombreAudio)
+def plotear_audio(forma=forma):
+	app.fileName = filedialog.askopenfilename( 
+		filetypes = ( 
+			("All files","*.*"), 
+			("archivos wav","*.wav" ),
+			("archivos mp3","*.mp3") 
+		) 
+	)
+	nombre_audio = app.fileName
+	tipoAudio = informacion_audio(nombre_audio)
 	if tipoAudio == 0:
-		nombreAudio = convertor(nombreAudio)
+		nombre_audio = convertor(nombre_audio)
 	
-	rate, data = leerAudio(nombreAudio)
+	"""
+	Procesamiento de datos
+	"""
+	rate, data = leer_audio(nombre_audio)
 	#data = filter_passband(data,rate)
-	plotTiempo(data,rate,forma)
-	plotFrecuencia(data,rate,forma)
+	plot_tiempo(data,rate,forma)
+	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
 
 	canvas = FigureCanvasTkAgg(forma, app)
 	canvas.show()
-	canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
+	canvas.get_tk_widget().pack(
+		side=tk.TOP, fill=tk.BOTH, expand = True
+	)
 
 	#barrita de funcionalidades de la gráfica
 	toolbar = NavigationToolbar2TkAgg(canvas, app)
 	toolbar.update()
-	canvas._tkcanvas.pack(fill=tk.BOTH, expand = True)
+	canvas._tkcanvas.pack(
+		fill=tk.BOTH, expand = True
+	)
 
 	#label2 = tk.Label(app, text="Traducción... pronto", fg="blue", font=LARGE_FONT) #solo para dejar un espacio entre botón y gráfico
 	#label2.pack(pady=10) 
 
-class StartPage(tk.Frame):
+class start_page(tk.Frame):
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self,parent)
-		label = tk.Label(self, text="Welcome to the best morse decoder in the entire world!", fg="blue", font=LARGE_FONT)
+		label = tk.Label(
+			self, 
+			text="Welcome to the best morse decoder in the entire world!", 
+			fg="blue", font=LARGE_FONT
+		)
 		label.pack(pady=20, padx=10)
-		boton = ttk.Button(self, text="Click me!", command=plotearAudio)
+		boton = ttk.Button(
+			self, text="Click me!", command=plotear_audio
+		)
 		boton.pack()
 
 
 app = ventanita()
-app.minsize(width=600, height=250)
+app.minsize(width=800, height=600)
 #app.maxsize(width=400, height=400)
 
 #app.iconbitmap('@dog.xbm')
