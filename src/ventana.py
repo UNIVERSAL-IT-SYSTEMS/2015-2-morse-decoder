@@ -1,6 +1,7 @@
 from graph import *
 from conv import *
 from filt import *
+from traductor import *
 
 import tkinter as tk
 from tkinter import filedialog
@@ -58,7 +59,8 @@ def plotear_audio(forma=forma):
 	plot_tiempo(data,rate,forma)
 	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
-
+	print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
+	print(encode_morse("hola mundo"))
 	canvas = FigureCanvasTkAgg(forma, app)
 	canvas.show()
 	canvas.get_tk_widget().pack(
