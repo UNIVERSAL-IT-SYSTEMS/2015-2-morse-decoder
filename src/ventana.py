@@ -60,7 +60,7 @@ def plotear_audio(forma=forma):
 	"""
 	rate, data = leer_audio(nombre_audio)
 	
-	#data = filter_passband(data,rate)
+	data = filtrador(data,rate)
 	plot_tiempo(data,rate,forma2)
 	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
