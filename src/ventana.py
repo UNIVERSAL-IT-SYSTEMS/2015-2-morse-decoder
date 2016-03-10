@@ -68,7 +68,7 @@ def plotear_audio(forma=forma):
 	print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
 	print(encode_morse("hola mundo"))
 	#separar_audio(data,rate)
-
+	unos_audio(data,rate)
 	canvas = FigureCanvasTkAgg(forma2, app)
 	canvas.show()
 	canvas.get_tk_widget().pack(

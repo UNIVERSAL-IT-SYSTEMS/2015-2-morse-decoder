@@ -10,5 +10,34 @@ def separar_audio(data,rate,threshold = 15000):
 		else:
 			lista.append(0)
 	a = np.array(lista)
-	plt.plot(a)
+	#plt.plot(a)
+	#plt.show()
+	return a
+
+def unos_audio(data,rate):
+	trozo = 2*round(len(data)/rate)
+	
+	perfect=separar_audio(data,rate)
+	lista = []
+	uno = np.array(lista)
+	cont = 0
+	prom = 0
+	for i in perfect:
+		cont = cont + 1
+		prom = prom + i
+		if cont == trozo:
+			cont = 0
+			prom = prom/trozo
+			if prom > 0:
+				uno = np.append(uno,np.ones(trozo))
+			else:
+				uno = np.append(uno,np.zeros(trozo))
+			prom = 0
+	plt.fill_between(range(len(uno)),uno)
 	plt.show()
+
+
+
+
+
+
