@@ -1,4 +1,5 @@
 from scipy import fft, arange, ifft
+import numpy as np
 from numpy import sin, linspace, pi
 
 """
@@ -6,10 +7,12 @@ PLOT DEL DOMINIO DEL TIEMPO
 Entrada: datos del audio
 Salida: datos del plot
 """
-def plot_tiempo(data,rate,forma2):
+def plot_tiempo(data,rate,forma2,absolute=0):
+	if absolute == 1:
+		data = np.absolute(data)
 	timp=len(data)/rate 
-	t=linspace(0,timp,len(data))    			#linspace(start,stop,number)
-	p_tiempo = forma2.add_subplot(1,1,1)			#Return evenly spaced numbers over a specified interval.
+	t=linspace(0,timp,len(data))    			#linspace(start,stop,number)	
+	p_tiempo = forma2.add_subplot(1,1,1)		#Return evenly spaced numbers over a specified interval.
 	p_tiempo.plot(t, data)
 	return forma2
 

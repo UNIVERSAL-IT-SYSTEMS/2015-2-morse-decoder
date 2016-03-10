@@ -1,7 +1,8 @@
 from graph import *
 from conv import *
 from filt import *
-from traductor import *
+from translator import *
+from decoder import *
 
 import tkinter as tk
 from tkinter import filedialog
@@ -61,12 +62,12 @@ def plotear_audio(forma=forma):
 	rate, data = leer_audio(nombre_audio)
 	
 	data = filtrador(data,rate)
-	plot_tiempo(data,rate,forma2)
 	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
-	
+	plot_tiempo(data,rate,forma2,1)
 	print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
 	print(encode_morse("hola mundo"))
+	#separar_audio(data,rate)
 
 	canvas = FigureCanvasTkAgg(forma2, app)
 	canvas.show()
@@ -123,8 +124,8 @@ class graphs_page(tk.Frame):
 
 
 app = ventanita()
-#app.minsize(width=800, height=600)
-app.attributes("-fullscreen", True) 
+app.minsize(width=1200, height=700)
+#app.attributes("-fullscreen", True) 
 app.title("The Puntorayas Inversionistas")
 #app.iconbitmap('@image.xbm')
 app.mainloop()
