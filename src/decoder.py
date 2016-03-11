@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 
 def separar_audio(data,rate,threshold = 15000):
 	lista = []
+	data = np.absolute(data)
+	maximo_valor = np.amax(data)
+	print ("maximo valor",maximo_valor)
+	minimo_valor = np.amin(data)
+	print ("minimo valor",minimo_valor)
+	
 	for i in data:
 		if i>= threshold:
 			lista.append(1)
