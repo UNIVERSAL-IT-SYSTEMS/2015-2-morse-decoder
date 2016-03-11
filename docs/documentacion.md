@@ -63,8 +63,6 @@ El decodificador consta de varios pasos para lograr su objetivo, los cuales ser�
 
 7. Esta *numpy array* de largas cadenas de ceros y unos permite calcular los largos de los puntos y las rayas y estimar cuándo hay cambios de letras en el código morse, finalmente dejando un plot como se muestra a continuación.
 
-![Gráfico2](http://i.imgur.com/pqgTfbM.png "Presentación gráficas de nueva señal de ceros y unos")
-
 8. Finalmente, con el tamaño maximo y mínimos de cadenas de uno y el tamaño mínimo de cadenas de ceros se puede crear un string que posea el mensaje en morse.
 
 [**Traductor:**]
@@ -73,7 +71,6 @@ El traductor consiste en un diccionario, el cual tiene todas las letras y númer
 
 ##Funcionalidad##
 
-![Gráfico3](http://i.imgur.com/JG43h1R.png "Captura de audio")
 El programa actual está basado, principalmente, en uno encontrado en internet creado por [haskell](https://sites.google.com/site/haskell102/home/frequency-analysis-of-audio-file-with-python-numpy-scipy). Este programa tuvo que ser estudiado y modificado para que sea capaz de trabajar frente a cualquier formato de audio del tipo punto wav.
 
 Con la ayuda de Tkinter, al ejecutar el programa, se despliega una ventana con tres botones. El botón 'Load audio', al presionarlo, abre el 'gestor de archivos' que permite seleccionar el audio con extensión wav o mp3. Se hace el llamado a la función *plot_audio*, que por medio de las funciones *information_audio* determina el tipo de audio, *convertor* realiza la conversión a wav para trabajar y *read_audio* extrae los datos del audio y la frecuencia de muestreo.
@@ -92,19 +89,19 @@ Cada gráficas se despliega por medio de Matplotlib en las distintas ventanas de
 
 Para utilizar el programa los pasos a seguir son:
 * Abrir una terminal en la carpeta que contiene el programa.
-![parte 0](http://imgur.com/zRNP1uM)
+![parte 0](http://imgur.com/rUuVEOe.png "terminal")
 
 * Ejecutar el programa con el comando "python3 ventana.py".
-![parte 1](http://imgur.com/CFrEEe6)
+![parte 1](http://i.imgur.com/GLfgDfT.png "Ejeción terminal del programa")
 
 * Se mostrará una ventana, donde al presionar el primer botón se selecciona el audio que se desea utilizar.
-![parte 2]()
+![parte 2](http://i.imgur.com/JG43h1R.png "Captura de audio")
 
 * En la ventana principal se muestra la gráfica del audio en función del tiempo y la traducción del mensaje. 
-![parte 3](http://imgur.com/SVCRgf2)
+![parte 3](http://i.imgur.com/WaXsI3S.png "Ventana principal")
 
 * Al presionar el botón 'Show more graphs' se muestra una ventana con las gráficas del audio en función de la frecuencia y el espectograma.
-![parte 4]()
+![parte 4](http://i.imgur.com/bpnOxBg.png "Graficos de frecuencia y espectograma")
 
 * Al presionar el botón 'Show sound graph' se muestra la gráfica del sonido.
-![parte 5]()
+![parte 5](http://i.imgur.com/pqgTfbM.png "Graficos del audio de sonido morse")
