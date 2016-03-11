@@ -20,6 +20,7 @@ LARGE_FONT= ("Verdana", 12)
 #style.use("ggplot")
 forma = Figure(figsize=(2,2),dpi=100)
 forma2 = Figure(figsize=(2,2), dpi=100)
+forma3 = Figure(figsize=(2,2), dpi=100)
 
 class ventanita(tk.Tk):
 	def __init__(self, *args, **kwargs):
@@ -67,11 +68,10 @@ def plotear_audio(forma=forma):
 	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
 	plot_tiempo(data,rate,forma2,1)
-	#print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
-	#print(encode_morse("hola mundo"))
-	#separar_audio(data,rate)
-
-
+	print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
+	print(encode_morse("hola mundo"))
+	unos_audio(data,rate,forma3)
+	
 
 class start_page(tk.Frame):
 
@@ -141,8 +141,7 @@ class graphs_page2(tk.Frame):
 		boton_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
 		boton_back.pack()
 
-		'''
-		canvas = FigureCanvasTkAgg(forma, self)
+		canvas = FigureCanvasTkAgg(forma3, self)
 		canvas.show()
 		canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
 
@@ -150,10 +149,10 @@ class graphs_page2(tk.Frame):
 		toolbar = NavigationToolbar2TkAgg(canvas, self)
 		toolbar.update()
 		canvas._tkcanvas.pack(fill=tk.BOTH, expand = True)
-		'''
+
 
 app = ventanita()
-app.minsize(width=1200, height=700)
+app.minsize(width=1200, height=600)
 #app.attributes("-fullscreen", True) 
 app.title("The Puntorayas Inversionistas")
 #app.iconbitmap('@image.xbm')
