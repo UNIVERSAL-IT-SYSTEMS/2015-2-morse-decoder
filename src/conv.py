@@ -44,6 +44,11 @@ def convertor(direccion_archivo):
 	cancion.export(direccion_final,format ="wav")
 	return direccion_final
 
+"""
+EXTRAE INFORMACIÓN DEL AUDIO
+Entrada: nombre del audio
+Salida: arreglo numpy con datos del audio, frecuencia de muestreo
+"""
 def leer_audio(nombre_audio):
 	rate,info=read(nombre_audio)				#función de doble retorno?
 	dimension = info[0].size					#data: datos del audio (arreglo de numpy)

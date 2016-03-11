@@ -39,10 +39,11 @@ def plot_frecuencia(data,rate,forma):
 	p_frecuencia.set_xlabel('Magnitud')
 	p_frecuencia.set_ylabel('Frecuencia [Hz]')
 	return forma
+
 """
 CREA ESPECTOGRAMA DEL AUDIO
 Entrada: data del audio
-Salida: datos del specgram para su ploteo 
+Salida: datos del espectograma para su ploteo 
 """
 def spectrum(data,forma,rate):
 	p_espec = forma.add_subplot(2,1,2)

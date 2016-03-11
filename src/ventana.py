@@ -15,14 +15,14 @@ from filt import *
 from translator import *
 from decoder import *
 
-
 LARGE_FONT= ("Verdana", 12)
-#style.use("ggplot")
 forma = Figure(figsize=(2,2),dpi=100)
 forma2 = Figure(figsize=(2,2), dpi=100)
 forma3 = Figure(figsize=(2,2), dpi=100)
+codigo_traducido = " "
 
-class ventanita(tk.Tk):
+
+class application(tk.Tk):
 	def __init__(self, *args, **kwargs):
 
 		tk.Tk.__init__(self, *args, **kwargs)
@@ -44,7 +44,11 @@ class ventanita(tk.Tk):
 		frame = self.frames[cont]
 		frame.tkraise()
 
-
+"""
+SOLICITA AUDIO Y LLAMA A LAS FUNCIONES QUE LO ANALIZAN
+Entrada: 
+Salida: 
+"""
 def plotear_audio(forma=forma):
 	app.fileName = filedialog.askopenfilename( 
 		filetypes = ( 
@@ -78,6 +82,9 @@ def plotear_audio(forma=forma):
 	print(codigo_traducido)
 	print()
 
+"""
+PÁGINAS/VENTANAS DEL PROGRAMA
+"""
 class start_page(tk.Frame):
 
 	def __init__(self, parent, controller):
@@ -98,15 +105,19 @@ class start_page(tk.Frame):
 		canvas1.pack(side = tk.TOP, fill = BOTH, expand = True)
 		label = Label(canvas1, text="La traducción del audio morse es:", fg="blue", font=LARGE_FONT)
 		label.pack(side=tk.LEFT)
+		label_translate = Label(canvas1, text=codigo_traducido, fg="black", font=LARGE_FONT)
+		label_translate.pack(side=tk.LEFT)
+
 
 		canvas = FigureCanvasTkAgg(forma2, self)
 		canvas.show()
 		canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand = True)
 
-		#barrita de funcionalidades de la gráfica
+		#barra de navegación matplotlib
 		toolbar = NavigationToolbar2TkAgg(canvas, self)
 		toolbar.update()
 		canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand = True)
+		label_translate.update_idletasks()
 
 
 
@@ -122,7 +133,7 @@ class graphs_page(tk.Frame):
 		canvas.show()
 		canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
 
-		#barrita de funcionalidades de la gráfica
+		#barra de navegación matplotlib
 		toolbar = NavigationToolbar2TkAgg(canvas, self)
 		toolbar.update()
 		canvas._tkcanvas.pack(fill=tk.BOTH, expand = True)
@@ -146,9 +157,7 @@ class graphs_page2(tk.Frame):
 		canvas._tkcanvas.pack(fill=tk.BOTH, expand = True)
 
 
-app = ventanita()
+app = application()
 app.minsize(width=1200, height=600)
-#app.attributes("-fullscreen", True) 
 app.title("The Puntorayas Inversionistas")
-#app.iconbitmap('@image.xbm')
 app.mainloop()
