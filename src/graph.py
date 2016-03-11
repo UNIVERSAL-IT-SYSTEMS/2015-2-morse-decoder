@@ -2,6 +2,7 @@ from scipy import fft, arange, ifft
 import numpy as np
 from numpy import sin, linspace, pi
 from decoder import separate_audio
+
 """
 PLOT DEL DOMINIO DEL TIEMPO
 Entrada: datos del audio
@@ -55,6 +56,12 @@ def spectrum(data,forma,rate):
 	p_espec.set_ylabel('Frecuencia')
 	return forma
 
+
+"""
+GRAFICA EL SONIDO EN FUNCION DE CEROS Y UNOS
+Entrada: información del audio y frecuencia de muestreo
+Salida: datos de la grafica
+"""
 def plot_ones(data,rate,forma3):
 	piece = 2*round(len(data)/rate)
 	perfect=separate_audio(data,rate)

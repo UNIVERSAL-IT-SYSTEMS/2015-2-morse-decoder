@@ -21,8 +21,18 @@ letter_to_morse = {
 morse_to_letter = {morse: letter for letter, morse in letter_to_morse.items()}
 
 
+"""
+DECODIFICA EL MENSAJE
+Entrada: string con el mensaje en morse
+Salida: string con la traducción
+"""
 def decode_morse(morse_code):
 	return ''.join(morse_to_letter[code] for code in morse_code.split())
 
+"""
+CODIFICA EL MENSAJE EN MORSE
+Entrada: string con mensaje 
+Salida: string con codificación a morse
+"""
 def encode_morse(text):
 	return ' '.join(letter_to_morse[letter] for letter in text)

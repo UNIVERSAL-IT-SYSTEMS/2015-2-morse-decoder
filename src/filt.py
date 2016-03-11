@@ -2,28 +2,10 @@ from scipy import fft, arange, ifft
 from scipy.signal import bilinear, butter, lfilter
 
 """
-FILTRO PASABANDA (CREADO MANUALMENTE)
+FILTRO PASABANDA CALCULA LIMITES DEL PASABANDA
 Entrada: información del audio
-Salida: data filtrada
+Salida: limites del pasabanda
 """
-
-def filter_passband(data,rate):
-	large = len(data)
-	Y = fft(data)/large         				#Fast Fourier Transformation
-	Y = Y[range(round(large/2))]
-	freq_max=0;								
-	cont = 0;
-	for i in Y:
-		cont = cont + 1							#count de posición
-		if i>=freq_max:
-			pos = cont 							#Posición de la frecuencia máxima
-			freq_max=i 							#Frecuencia máxima
-	for i in range(len(Y)):
-		if( (i > pos*1.1) or (i < pos*0.9)):
-			Y[i]=0								#filtro al rededor de la frecuencia máxima
-	data = ifft(Y)
-	return data
-
 def butter_bandpass(lowcut, highcut, fs, order=5):
     nyq = 0.5 * fs
     low = lowcut / nyq
@@ -32,6 +14,11 @@ def butter_bandpass(lowcut, highcut, fs, order=5):
     return b, a
 
 
+"""
+APLICA EL FILTRO
+Entrada: información del audio
+Salida: arreglo numpy filtrado
+"""
 def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
     b, a = butter_bandpass(lowcut, highcut, fs, order=order)
     y = lfilter(b, a, data)

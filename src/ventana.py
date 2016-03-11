@@ -19,7 +19,7 @@ LARGE_FONT= ("Verdana", 12)
 forma = Figure(figsize=(2,2),dpi=100)
 forma2 = Figure(figsize=(2,2), dpi=100)
 forma3 = Figure(figsize=(2,2), dpi=100)
-translated_code = "hola"
+translated_code = " "
 
 
 class application(tk.Tk):
@@ -83,6 +83,9 @@ def plot_audio(forma=forma):
 	print(translated_code)
 	print()
 
+	label_translate = Label(app, text="Audio translation is: "+translated_code, fg="black", font=LARGE_FONT)
+	label_translate.pack(side=tk.BOTTOM)
+
 """
 PÁGINAS/VENTANAS DEL PROGRAMA
 """
@@ -100,16 +103,6 @@ class start_page(tk.Frame):
 
 		button_graph2 = Button(self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2), height = 1, width = 13)
 		button_graph2.pack()
-
-
-		canvas1 = Canvas(self, height=30)
-		canvas1.pack(side = tk.TOP, fill = BOTH, expand = True)
-		label = Label(canvas1, text="Audio translation is:", fg="blue", font=LARGE_FONT)
-		label.pack(side=tk.LEFT)
-
-		label_translate = Label(canvas1, text=translated_code, fg="black", font=LARGE_FONT)
-		label_translate.pack(side=tk.LEFT)
-
 
 		canvas = FigureCanvasTkAgg(forma2, self)
 		canvas.show()
@@ -159,6 +152,6 @@ class graphs_page2(tk.Frame):
 
 
 app = application()
-app.minsize(width=1200, height=600)
+app.minsize(width=1000, height=700)
 app.title("The Puntorayas Inversionistas")
 app.mainloop()
