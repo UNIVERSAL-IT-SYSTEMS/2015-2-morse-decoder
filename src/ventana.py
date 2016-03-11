@@ -77,30 +77,22 @@ class start_page(tk.Frame):
 
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self,parent)
-		label = tk.Label(
-			self, 
-			text="Welcome to the best morse decoder in the entire world!", 
-			fg="blue", font=LARGE_FONT
-		)
+		label = tk.Label(self, text="Welcome to the best morse decoder in the entire world!", fg="blue", font=LARGE_FONT)
 		label.pack(pady=20, padx=10)
-		boton_load = ttk.Button(
-			self, text="Load audio", command=plotear_audio
-		)
+		boton_load = Button(self, text="Load audio", command=plotear_audio, height = 1, width = 13)
 		boton_load.pack()
 
-		boton_graph = ttk.Button(
-			self, text="Show more graphs", command=lambda: controller.show_frame(graphs_page) 
-		)
+		boton_graph = Button(self, text="Show more graphs", command=lambda: controller.show_frame(graphs_page), height = 1, width = 13)
 		boton_graph.pack(padx=4, pady=10)
 
-		boton_graph2 = ttk.Button(
-			self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2) 
-		)
+		boton_graph2 = Button(self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2), height = 1, width = 13)
 		boton_graph2.pack()
 
 
-		self.canvas = Canvas(self)
-		self.canvas.pack(side = tk.TOP, fill = BOTH, expand = True)
+		canvas1 = Canvas(self, height=30)
+		canvas1.pack(side = tk.TOP, fill = BOTH, expand = True)
+		label = Label(canvas1, text="La traducción del audio morse es:", fg="blue", font=LARGE_FONT)
+		label.pack(side=tk.LEFT)
 
 		canvas = FigureCanvasTkAgg(forma2, self)
 		canvas.show()
@@ -111,8 +103,6 @@ class start_page(tk.Frame):
 		toolbar.update()
 		canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand = True)
 
-
-		
 
 
 class graphs_page(tk.Frame):
@@ -139,7 +129,7 @@ class graphs_page2(tk.Frame):
 		label = tk.Label(self, text="Graph page 2 - Sound graph", fg="black", font=LARGE_FONT)
 		label.pack(pady=20, padx=10)
 		boton_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
-		boton_back.pack()
+		boton_back.pack(padx=4, pady=10)
 
 		canvas = FigureCanvasTkAgg(forma3, self)
 		canvas.show()
