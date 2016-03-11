@@ -38,9 +38,6 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente med
 
 [**PyDub:**](https://github.com/jiaaro/pydub/blob/master/API.markdown) Como el módulo pylab de *Matplotlib* trabaja nativamente con wav para plotear los datos es necesario el uso de esta biblioteca para realizar la conversión de mp3 a wav.
 
-![Gráfico](http://i.imgur.com/bpnOxBg.png "Presentación gráficas de frecuencia y espectograma")
-
-
 
 ##Componentes del programa##
 [**Fitro:**]
@@ -62,6 +59,7 @@ El decodificador consta de varios pasos para lograr su objetivo, los cuales ser�
 6. Este nuevo *numpy array* se le calcula ventanas de numeros viendo el promedio para hacer más preciso el gráfico. El promedio si es 0 indicaba que en una ventana solo estará completa de 0's, en caso contrario estará completa de 1, dejando un *numpy array* más sólido de largas cadenas de unos y ceros seguidos.
 
 7. Esta *numpy array* de largas cadenas de ceros y unos permite calcular los largos de los puntos y las rayas y estimar cuándo hay cambios de letras en el código morse, finalmente dejando un plot como se muestra a continuación.
+![plot_audio](http://i.imgur.com/zw5uHfJ.png "Plot de audio de ceros y unos")
 
 8. Finalmente, con el tamaño maximo y mínimos de cadenas de uno y el tamaño mínimo de cadenas de ceros se puede crear un string que posea el mensaje en morse.
 
