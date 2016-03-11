@@ -4,14 +4,13 @@ import matplotlib.pyplot as plt
 from math import fabs
 from translator import *
 
-def separar_audio(data,rate,threshold = 15000):
+def separar_audio(data,rate):
 	lista = []
 	data = np.absolute(data)
 	maximo_valor = np.amax(data)
-	print ("maximo valor",maximo_valor)
-	minimo_valor = np.amin(data)
-	print ("minimo valor",minimo_valor)
-	
+	media = data.mean()
+	threshold = ((maximo_valor + media)/2)*1.1
+	#print(threshold)
 	for i in data:
 		if i>= threshold:
 			lista.append(1)
@@ -20,7 +19,7 @@ def separar_audio(data,rate,threshold = 15000):
 	a = np.array(lista)
 	return a
 
-def unos_audio(data,rate,forma3):
+def unos_audio(data,rate):
 	trozo = 2*round(len(data)/rate)
 	perfect=separar_audio(data,rate)
 	lista = []
@@ -38,11 +37,8 @@ def unos_audio(data,rate,forma3):
 			else:
 				uno = np.append(uno,np.zeros(trozo))
 			prom = 0
-	normal = forma3.add_subplot(1,1,1)
-	normal.fill_between(range(len(uno)),uno)
-	print(uno)
-	contador(uno)
-	return forma3
+	return contador(uno)
+
 
 def contador(data):
 	min0 = 9999999
@@ -64,15 +60,12 @@ def contador(data):
 					max0 = contador
 				if contador <= min0:
 					min0 = contador
-			#print(contador,end=" ")
 			contador = 1
-		#if i == len(data)-1:
-			#print(contador)
-	print("max 1: ",max1)
-	print("min 1: ",min1)
-	print("max 0: ",max0)
-	print("min 0: ",min0)
-	detector(data,max1,min1,min0)
+	#	print("max 1: ",max1)
+	#	print("min 1: ",min1)
+	#	print("max 0: ",max0)
+	#	print("min 0: ",min0)
+	return detector(data,max1,min1,min0)
 
 def detector(data,max1,min1,min0):
 	morse = ""
@@ -92,6 +85,7 @@ def detector(data,max1,min1,min0):
 				if contador > 2*min0:
 					morse = morse + " "
 			contador = 0
-	print(decode_morse(morse))
+	#print(decode_morse(morse))
+	return morse
 
 

@@ -49,6 +49,8 @@ def leer_audio(nombre_audio):
 	dimension = info[0].size					#data: datos del audio (arreglo de numpy)
 	if dimension==1:							#rate: frecuencia de muestreo
 		data = info
+		perfect = 1
 	else:
 		data = info[:,dimension-1]
-	return rate, data
+		perfect = 0
+	return rate, data, perfect
