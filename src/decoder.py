@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 from math import fabs
 from translator import *
 
-def separar_audio(data,rate):
+def separate_audio(data,rate):
 	lista = []
 	data = np.absolute(data)
-	maximo_valor = np.amax(data)
+	max_value = np.amax(data)
 	media = data.mean()
-	threshold = ((maximo_valor + media)/2)*1.1
+	threshold = ((max_value + media)/2)*1.1
 	#print(threshold)
 	for i in data:
 		if i>= threshold:
@@ -20,8 +20,8 @@ def separar_audio(data,rate):
 	return a
 
 def ones_audio(data,rate):
-	trozo = 2*round(len(data)/rate)
-	perfect=separar_audio(data,rate)
+	piece = 2*round(len(data)/rate)
+	perfect=separate_audio(data,rate)
 	lista = []
 	uno = np.array(lista)
 	cont = 0
@@ -29,13 +29,13 @@ def ones_audio(data,rate):
 	for i in perfect:
 		cont = cont + 1
 		prom = prom + i
-		if cont == trozo:
+		if cont == piece:
 			cont = 0
-			prom = prom/trozo
+			prom = prom/piece
 			if prom > 0:
-				uno = np.append(uno,np.ones(trozo))
+				uno = np.append(uno,np.ones(piece))
 			else:
-				uno = np.append(uno,np.zeros(trozo))
+				uno = np.append(uno,np.zeros(piece))
 			prom = 0
 	return count(uno)
 

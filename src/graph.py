@@ -1,7 +1,7 @@
 from scipy import fft, arange, ifft
 import numpy as np
 from numpy import sin, linspace, pi
-from decoder import separar_audio
+from decoder import separate_audio
 """
 PLOT DEL DOMINIO DEL TIEMPO
 Entrada: datos del audio
@@ -12,11 +12,11 @@ def plot_time(data,rate,forma2,absolute=0):
 		data = np.absolute(data)
 	timp=len(data)/rate 
 	t=linspace(0,timp,len(data))    			#linspace(start,stop,number)	
-	p_tiempo = forma2.add_subplot(1,1,1)		#Return evenly spaced numbers over a specified interval.
-	p_tiempo.set_title('Abs(audio)')
-	p_tiempo.set_xlabel('Tiempo [s]')
-	p_tiempo.set_ylabel('Amplitud [dB]')
-	p_tiempo.plot(t, data)
+	p_time = forma2.add_subplot(1,1,1)		#Return evenly spaced numbers over a specified interval.
+	p_time.set_title('Abs(audio)')
+	p_time.set_xlabel('Tiempo [s]')
+	p_time.set_ylabel('Amplitud [dB]')
+	p_time.plot(t, data)
 	return forma2
 
 """
@@ -25,19 +25,19 @@ Entrada: datos del audio
 Salida: datos del plot
 """
 def plot_frecuency(data,rate,forma):
-	largo = len(data)
-	p_frecuencia = forma.add_subplot(2,1,1)
-	k = arange(largo)
-	T = largo/rate
+	large = len(data)
+	p_frecuency = forma.add_subplot(2,1,1)
+	k = arange(large)
+	T = large/rate
 	frq = k/T                       			#Two sides frequency range
-	frq = frq[range(round(largo/2))] 			#One side frequency range
-	Y = fft(data)/largo         				#Fast Fourier Transformation
-	Y = Y[range(round(largo/2))]
+	frq = frq[range(round(large/2))] 			#One side frequency range
+	Y = fft(data)/large         				#Fast Fourier Transformation
+	Y = Y[range(round(large/2))]
 
-	p_frecuencia.plot(frq,abs(Y),'r')
-	p_frecuencia.set_title('Gráficos de Frecuencia y Spectograma')
-	p_frecuencia.set_xlabel('Magnitud')
-	p_frecuencia.set_ylabel('Frecuencia [Hz]')
+	p_frecuency.plot(frq,abs(Y),'r')
+	p_frecuency.set_title('Gráficos de Frecuencia y Spectograma')
+	p_frecuency.set_xlabel('Magnitud')
+	p_frecuency.set_ylabel('Frecuencia [Hz]')
 	return forma
 
 """
@@ -47,7 +47,7 @@ Salida: datos del espectograma para su ploteo
 """
 def spectrum(data,forma,rate):
 	p_espec = forma.add_subplot(2,1,2)
-	NFFT = 1024									#Largo de los ventanas de segmentos
+	NFFT = 1024									#large de los ventanas de segmentos
 	Pxx, freqs, bins, im = p_espec.specgram(
 		data, NFFT=NFFT, Fs=rate
 	)
@@ -56,8 +56,8 @@ def spectrum(data,forma,rate):
 	return forma
 
 def plot_ones(data,rate,forma3):
-	trozo = 2*round(len(data)/rate)
-	perfect=separar_audio(data,rate)
+	piece = 2*round(len(data)/rate)
+	perfect=separate_audio(data,rate)
 	lista = []
 	uno = np.array(lista)
 	cont = 0
@@ -65,13 +65,13 @@ def plot_ones(data,rate,forma3):
 	for i in perfect:
 		cont = cont + 1
 		prom = prom + i
-		if cont == trozo:
+		if cont == piece:
 			cont = 0
-			prom = prom/trozo
+			prom = prom/piece
 			if prom > 0:
-				uno = np.append(uno,np.ones(trozo))
+				uno = np.append(uno,np.ones(piece))
 			else:
-				uno = np.append(uno,np.zeros(trozo))
+				uno = np.append(uno,np.zeros(piece))
 			prom = 0
 	normal = forma3.add_subplot(1,1,1)
 	normal.fill_between(range(len(uno)),uno)

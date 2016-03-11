@@ -20,17 +20,17 @@ def information_audio(address_file):
 		stderr=subprocess.PIPE
 	)
 	out, err =  p.communicate()	
-	count=0									#tipo_audio = 0 -> mp3
-	for palabra in out:							#tipo_audio = 1 -> wav	
-		count=count+palabra				#tipo_audio = 2 -> formato no soportado
+	count=0									#type_audio = 0 -> mp3
+	for word in out:							#type_audio = 1 -> wav	
+		count=count+word				#type_audio = 2 -> formato no soportado
 	if count == 282:
-		tipo_audio=0
+		type_audio=0
 	elif count == 344:
-		tipo_audio=1
+		type_audio=1
 	else:
-		tipo_audio=2
-		print("Formato no soportado")
-	return tipo_audio
+		type_audio=2
+		print("Format not supported")
+	return type_audio
 
 """
 CONVIERTE MP3 A WAV
@@ -38,11 +38,11 @@ Entrada: direccion del audio
 Salida: direccion audio convertido
 """
 def convertor(address_file):
-	cancion = AudioSegment.from_mp3(address_file)
-	direccion_limpia = address_file.split(".")
-	direccion_final = direccion_limpia[0] + ".wav"
-	cancion.export(direccion_final,format ="wav")
-	return direccion_final
+	song = AudioSegment.from_mp3(address_file)
+	address_clean = address_file.split(".")
+	address_final = address_clean[0] + ".wav"
+	song.export(address_final,format ="wav")
+	return address_final
 
 """
 EXTRAE INFORMACIÓN DEL AUDIO

@@ -6,10 +6,11 @@ FILTRO PASABANDA (CREADO MANUALMENTE)
 Entrada: información del audio
 Salida: data filtrada
 """
+
 def filter_passband(data,rate):
-	largo = len(data)
-	Y = fft(data)/largo         				#Fast Fourier Transformation
-	Y = Y[range(round(largo/2))]
+	large = len(data)
+	Y = fft(data)/large         				#Fast Fourier Transformation
+	Y = Y[range(round(large/2))]
 	freq_max=0;								
 	cont = 0;
 	for i in Y:
@@ -42,9 +43,9 @@ Entrada: información del audio
 Salida: data filtrada
 """
 def filter(data,rate):
-	largo = len(data)
-	Y = fft(data)/largo         				#Fast Fourier Transformation
-	Y = Y[range(round(largo/2))]
+	large = len(data)
+	Y = fft(data)/large         				#Fast Fourier Transformation
+	Y = Y[range(round(large/2))]
 	freq_max=0;								
 	cont = 0;
 	for i in Y:
@@ -52,7 +53,7 @@ def filter(data,rate):
 		if i>=freq_max:
 			pos = cont 							#Posición de la frecuencia máxima
 			freq_max=i 							#Frecuencia máxima
-	frec = pos*rate/largo
+	frec = pos*rate/large
 	fs = rate
 	lowcut = frec*0.95
 	highcut = frec*1.05
