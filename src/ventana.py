@@ -63,13 +63,10 @@ def plotear_audio(forma=forma):
 	Procesamiento de datos
 	"""
 	rate, data = leer_audio(nombre_audio)
-	
 	data = filtrador(data,rate)
 	plot_frecuencia(data,rate,forma)
 	spectrum(data,forma,rate)
 	plot_tiempo(data,rate,forma2,1)
-	print(decode_morse(".... --- .-.. .- / -- ..- -. -.. ---"))
-	print(encode_morse("hola mundo"))
 	unos_audio(data,rate,forma3)
 	
 
@@ -97,8 +94,6 @@ class start_page(tk.Frame):
 			self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2) 
 		)
 		boton_graph2.pack()
-
-
 		self.canvas = Canvas(self)
 		self.canvas.pack(side = tk.TOP, fill = BOTH, expand = True)
 
@@ -110,9 +105,6 @@ class start_page(tk.Frame):
 		toolbar = NavigationToolbar2TkAgg(canvas, self)
 		toolbar.update()
 		canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand = True)
-
-
-		
 
 
 class graphs_page(tk.Frame):
