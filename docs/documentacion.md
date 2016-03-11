@@ -44,7 +44,11 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente med
 
 ##Componentes del programa##
 [**Fitro:**]
+
+
 [**Decodificador:**]
+
+
 [**Traductor:**]
 
 
@@ -52,9 +56,9 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente med
 
 El programa actual está basado, principalmente, en uno encontrado en internet creado por [haskell](https://sites.google.com/site/haskell102/home/frequency-analysis-of-audio-file-with-python-numpy-scipy). Este programa tuvo que ser estudiado y modificado para que sea capaz de trabajar frente a cualquier formato de audio del tipo punto wav.
 
-Con la ayuda de Tkinter, al ejecutar el programa, se despliega una ventana con tres botones. El botón 'Load audio', al presionarlo, abre el 'gestor de archivos' que permite seleccionar el audio con extensión wav o mp3. Se hace el llamado a la función *plotear_audio*, que por medio de las funciones *informacion_audio* determina el tipo de audio, *convertor* realiza la conversión a wav para trabajar y *leer_audio* extrae los datos del audio y la frecuencia de muestreo.
+Con la ayuda de Tkinter, al ejecutar el programa, se despliega una ventana con tres botones. El botón 'Load audio', al presionarlo, abre el 'gestor de archivos' que permite seleccionar el audio con extensión wav o mp3. Se hace el llamado a la función *plot_audio*, que por medio de las funciones *information_audio* determina el tipo de audio, *convertor* realiza la conversión a wav para trabajar y *read_audio* extrae los datos del audio y la frecuencia de muestreo.
 
-Luego se realiza el filtrado de audio para eliminar el ruido, la función *filtrador* retorna así los datos del audio filtrados para seguir trabajando. Con esta información y la frecuencia de muestreo se hace el llamado a las funciones *plot_frecuencia* que entrega la gráfica en el dominio de la frecuencia, *plot_tiempo* entrega la gráfica en el dominio del tiempo, *spectrum* entrega la gráfica del espectrograma en cada segundo de tiempo y *plot_unos* que muestra a lo largo del tiempo los valores que toma el audio; 1 al existir sonido y 0 en su ausencia.
+Luego se realiza el filtrado de audio para eliminar el ruido, la función *filter* retorna así los datos del audio filtrados para seguir trabajando. Con esta información y la frecuencia de muestreo se hace el llamado a las funciones *plot_frecuency* que entrega la gráfica en el dominio de la frecuencia, *plot_time* entrega la gráfica en el dominio del tiempo, *spectrum* entrega la gráfica del espectrograma en cada segundo de tiempo y *plot_ones* que muestra a lo largo del tiempo los valores que toma el audio; 1 al existir sonido y 0 en su ausencia.
 
 Cada gráficas se despliega por medio de Matplotlib en las distintas ventanas de la aplicación, mostrando en la ventana principal la gráfica en el tiempo y en ventanas secundarias las otras gráficas.
 

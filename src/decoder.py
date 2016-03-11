@@ -19,7 +19,7 @@ def separar_audio(data,rate):
 	a = np.array(lista)
 	return a
 
-def unos_audio(data,rate):
+def ones_audio(data,rate):
 	trozo = 2*round(len(data)/rate)
 	perfect=separar_audio(data,rate)
 	lista = []
@@ -37,30 +37,30 @@ def unos_audio(data,rate):
 			else:
 				uno = np.append(uno,np.zeros(trozo))
 			prom = 0
-	return contador(uno)
+	return count(uno)
 
 
-def contador(data):
+def count(data):
 	min0 = 9999999
 	max0 = 0
 	min1 = 9999999
 	max1 = 0
-	contador = 1
+	count = 1
 	for i in range(1,len(data)):
 		if data[i]==data[i-1]:
-			contador = contador + 1
+			count = count + 1
 		else:
 			if data[i]==0:
-				if contador >= max1:
-					max1 = contador
-				if contador <= min1:
-					min1 = contador
+				if count >= max1:
+					max1 = count
+				if count <= min1:
+					min1 = count
 			else:
-				if contador >= max0:
-					max0 = contador
-				if contador <= min0:
-					min0 = contador
-			contador = 1
+				if count >= max0:
+					max0 = count
+				if count <= min0:
+					min0 = count
+			count = 1
 	#	print("max 1: ",max1)
 	#	print("min 1: ",min1)
 	#	print("max 0: ",max0)
@@ -69,22 +69,22 @@ def contador(data):
 
 def detector(data,max1,min1,min0):
 	morse = ""
-	contador = 1
+	count = 1
 	for i in range(1,len(data)-1):
 		if data[i]==data[i+1]:
-			contador = contador + 1
+			count = count + 1
 		else:
 			if data[i-1]==1:
-				dif_max1 = fabs(max1-contador)
-				dif_min1 = fabs(min1-contador)
+				dif_max1 = fabs(max1-count)
+				dif_min1 = fabs(min1-count)
 				if dif_max1 > dif_min1:
 					morse = morse + "."
 				else:
 					morse = morse + "-"
 			else:
-				if contador > 2*min0:
+				if count > 2*min0:
 					morse = morse + " "
-			contador = 0
+			count = 0
 	#print(decode_morse(morse))
 	return morse
 

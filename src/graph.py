@@ -7,7 +7,7 @@ PLOT DEL DOMINIO DEL TIEMPO
 Entrada: datos del audio
 Salida: datos del plot
 """
-def plot_tiempo(data,rate,forma2,absolute=0):
+def plot_time(data,rate,forma2,absolute=0):
 	if absolute == 1:
 		data = np.absolute(data)
 	timp=len(data)/rate 
@@ -24,7 +24,7 @@ PLOT DEL DOMINIO DE LA FRECUENCIA
 Entrada: datos del audio
 Salida: datos del plot
 """
-def plot_frecuencia(data,rate,forma):
+def plot_frecuency(data,rate,forma):
 	largo = len(data)
 	p_frecuencia = forma.add_subplot(2,1,1)
 	k = arange(largo)
@@ -55,7 +55,7 @@ def spectrum(data,forma,rate):
 	p_espec.set_ylabel('Frecuencia')
 	return forma
 
-def plot_unos(data,rate,forma3):
+def plot_ones(data,rate,forma3):
 	trozo = 2*round(len(data)/rate)
 	perfect=separar_audio(data,rate)
 	lista = []

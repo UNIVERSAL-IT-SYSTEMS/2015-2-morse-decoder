@@ -13,7 +13,7 @@ def filter_passband(data,rate):
 	freq_max=0;								
 	cont = 0;
 	for i in Y:
-		cont = cont + 1							#contador de posición
+		cont = cont + 1							#count de posición
 		if i>=freq_max:
 			pos = cont 							#Posición de la frecuencia máxima
 			freq_max=i 							#Frecuencia máxima
@@ -41,14 +41,14 @@ FILTRO PASABANDA (Butterworth)
 Entrada: información del audio
 Salida: data filtrada
 """
-def filtrador(data,rate):
+def filter(data,rate):
 	largo = len(data)
 	Y = fft(data)/largo         				#Fast Fourier Transformation
 	Y = Y[range(round(largo/2))]
 	freq_max=0;								
 	cont = 0;
 	for i in Y:
-		cont = cont + 1							#contador de posición
+		cont = cont + 1							#count de posición
 		if i>=freq_max:
 			pos = cont 							#Posición de la frecuencia máxima
 			freq_max=i 							#Frecuencia máxima

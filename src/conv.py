@@ -8,24 +8,24 @@ IDENTIFICA EL FORMATO DEL AUDIO
 Entrada: Direccion del audio
 Salida: string identificando el formato del audio 
 """
-def informacion_audio(direccion_archivo):
+def information_audio(address_file):
 	cmnd = [
 		'ffprobe','-v', 'error',
 		'-show_entries', 'format=format_name', 
 		'-of','default=noprint_wrappers=1:nokey=1', 
-		direccion_archivo
+		address_file
 	]
 	p = subprocess.Popen(
 		cmnd, stdout=subprocess.PIPE, 
 		stderr=subprocess.PIPE
 	)
 	out, err =  p.communicate()	
-	contador=0									#tipo_audio = 0 -> mp3
+	count=0									#tipo_audio = 0 -> mp3
 	for palabra in out:							#tipo_audio = 1 -> wav	
-		contador=contador+palabra				#tipo_audio = 2 -> formato no soportado
-	if contador == 282:
+		count=count+palabra				#tipo_audio = 2 -> formato no soportado
+	if count == 282:
 		tipo_audio=0
-	elif contador == 344:
+	elif count == 344:
 		tipo_audio=1
 	else:
 		tipo_audio=2
@@ -37,9 +37,9 @@ CONVIERTE MP3 A WAV
 Entrada: direccion del audio
 Salida: direccion audio convertido
 """
-def convertor(direccion_archivo):
-	cancion = AudioSegment.from_mp3(direccion_archivo)
-	direccion_limpia = direccion_archivo.split(".")
+def convertor(address_file):
+	cancion = AudioSegment.from_mp3(address_file)
+	direccion_limpia = address_file.split(".")
 	direccion_final = direccion_limpia[0] + ".wav"
 	cancion.export(direccion_final,format ="wav")
 	return direccion_final
@@ -49,8 +49,8 @@ EXTRAE INFORMACIÓN DEL AUDIO
 Entrada: nombre del audio
 Salida: arreglo numpy con datos del audio, frecuencia de muestreo
 """
-def leer_audio(nombre_audio):
-	rate,info=read(nombre_audio)				#función de doble retorno?
+def read_audio(name_audio):
+	rate,info=read(name_audio)				#función de doble retorno?
 	dimension = info[0].size					#data: datos del audio (arreglo de numpy)
 	if dimension==1:							#rate: frecuencia de muestreo
 		data = info

@@ -19,7 +19,7 @@ LARGE_FONT= ("Verdana", 12)
 forma = Figure(figsize=(2,2),dpi=100)
 forma2 = Figure(figsize=(2,2), dpi=100)
 forma3 = Figure(figsize=(2,2), dpi=100)
-codigo_traducido = " "
+translated_code = "hola"
 
 
 class application(tk.Tk):
@@ -49,7 +49,7 @@ SOLICITA AUDIO Y LLAMA A LAS FUNCIONES QUE LO ANALIZAN
 Entrada: 
 Salida: 
 """
-def plotear_audio(forma=forma):
+def plot_audio(forma=forma):
 	app.fileName = filedialog.askopenfilename( 
 		filetypes = ( 
 			("All files","*.*"), 
@@ -57,29 +57,30 @@ def plotear_audio(forma=forma):
 			("archivos mp3","*.mp3") 
 		) 
 	)
-	nombre_audio = app.fileName
-	tipoAudio = informacion_audio(nombre_audio)
-	if tipoAudio == 0:
-		nombre_audio = convertor(nombre_audio)
-	print(nombre_audio)
+	name_audio = app.fileName
+	type_audio = information_audio(name_audio)
+	if type_audio == 0:
+		name_audio = convertor(name_audio)
+	print(name_audio)
 	
 	"""
 	Procesamiento de datos
 	"""
-	rate, data, perfect = leer_audio(nombre_audio)
+	rate, data, perfect = read_audio(name_audio)
 	
 	if perfect == 0:
-		data = filtrador(data,rate)
-	plot_frecuencia(data,rate,forma)
+		data = filter(data,rate)
+	plot_frecuency(data,rate,forma)
 	spectrum(data,forma,rate)
-	plot_tiempo(data,rate,forma2,1)
-	plot_unos(data,rate,forma3)
+	plot_time(data,rate,forma2,1)
+	plot_ones(data,rate,forma3)
 
-	codigo_capturado = unos_audio(data,rate)
-	codigo_traducido = decode_morse(codigo_capturado)
+	captured_code = ones_audio(data,rate)
+	translated_code = decode_morse(captured_code)
+
 	print()
-	print(codigo_capturado)
-	print(codigo_traducido)
+	print(captured_code)
+	print(translated_code)
 	print()
 
 """
@@ -91,21 +92,22 @@ class start_page(tk.Frame):
 		tk.Frame.__init__(self,parent)
 		label = tk.Label(self, text="Welcome to the best morse decoder in the entire world!", fg="blue", font=LARGE_FONT)
 		label.pack(pady=20, padx=10)
-		boton_load = Button(self, text="Load audio", command=plotear_audio, height = 1, width = 13)
-		boton_load.pack()
+		button_load = Button(self, text="Load audio", command=plot_audio, height = 1, width = 13)
+		button_load.pack()
 
-		boton_graph = Button(self, text="Show more graphs", command=lambda: controller.show_frame(graphs_page), height = 1, width = 13)
-		boton_graph.pack(padx=4, pady=10)
+		button_graph = Button(self, text="Show more graphs", command=lambda: controller.show_frame(graphs_page), height = 1, width = 13)
+		button_graph.pack(padx=4, pady=10)
 
-		boton_graph2 = Button(self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2), height = 1, width = 13)
-		boton_graph2.pack()
+		button_graph2 = Button(self, text="Show sound graph", command=lambda: controller.show_frame(graphs_page2), height = 1, width = 13)
+		button_graph2.pack()
 
 
 		canvas1 = Canvas(self, height=30)
 		canvas1.pack(side = tk.TOP, fill = BOTH, expand = True)
-		label = Label(canvas1, text="La traducción del audio morse es:", fg="blue", font=LARGE_FONT)
+		label = Label(canvas1, text="Audio translation is:", fg="blue", font=LARGE_FONT)
 		label.pack(side=tk.LEFT)
-		label_translate = Label(canvas1, text=codigo_traducido, fg="black", font=LARGE_FONT)
+
+		label_translate = Label(canvas1, text=translated_code, fg="black", font=LARGE_FONT)
 		label_translate.pack(side=tk.LEFT)
 
 
@@ -117,7 +119,6 @@ class start_page(tk.Frame):
 		toolbar = NavigationToolbar2TkAgg(canvas, self)
 		toolbar.update()
 		canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand = True)
-		label_translate.update_idletasks()
 
 
 
@@ -126,8 +127,8 @@ class graphs_page(tk.Frame):
 		tk.Frame.__init__(self,parent)
 		label = tk.Label(self, text="Graph page", fg="red", font=LARGE_FONT)
 		label.pack(pady=20, padx=10)
-		boton_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
-		boton_back.pack(padx=4, pady=10)
+		button_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
+		button_back.pack(padx=4, pady=10)
 
 		canvas = FigureCanvasTkAgg(forma, self)
 		canvas.show()
@@ -144,8 +145,8 @@ class graphs_page2(tk.Frame):
 		tk.Frame.__init__(self,parent)
 		label = tk.Label(self, text="Graph page 2 - Sound graph", fg="black", font=LARGE_FONT)
 		label.pack(pady=20, padx=10)
-		boton_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
-		boton_back.pack(padx=4, pady=10)
+		button_back = ttk.Button(self, text="Back to principal page", command=lambda: controller.show_frame(start_page))
+		button_back.pack(padx=4, pady=10)
 
 		canvas = FigureCanvasTkAgg(forma3, self)
 		canvas.show()
