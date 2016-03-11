@@ -2,18 +2,17 @@
 **Decodificador de código morse a partir de audio de transmisiones satelitales**
 
 Integrantes:
-	* Nicole Macarena Henríquez Sepúlveda
-	* Katherine Marcela Liberona Irarrazabal
-	* Maximiliano Felipe Andrés Pérez Rodríguez
+* Nicole Macarena Henríquez Sepúlveda
+* Katherine Marcela Liberona Irarrazabal
+* Maximiliano Felipe Andrés Pérez Rodríguez
 
 
 Contenidos:
-	* [Introducción](#introducción)
-	* [Bibliotecas y paquetes utilizados](#bibliotecas-y-paquetes-utilizados)
-	* [Componentes del programa](#componentes-del-programa)
-	* [Funcionalidad](#funcionalidad)
-	* [Manual de usuario](#manual-de-usuario)
-
+* [Introducción](#introducción)
+* [Bibliotecas y paquetes utilizados](#bibliotecas-y-paquetes-utilizados)
+* [Componentes del programa](#componentes-del-programa)
+* [Funcionalidad](#funcionalidad)
+* [Manual de usuario](#manual-de-usuario)
 
 
 ##Introducción##
@@ -39,26 +38,47 @@ La mayoría de los paquetes y librerias de python son instaladas fácilmente med
 
 [**PyDub:**](https://github.com/jiaaro/pydub/blob/master/API.markdown) Como el módulo pylab de *Matplotlib* trabaja nativamente con wav para plotear los datos es necesario el uso de esta biblioteca para realizar la conversión de mp3 a wav.
 
-![Gráfico](http://i.imgur.com/INpX1uZ.png?1 "Presentación gráficas de frecuencia y espectograma")
+![Gráfico](http://i.imgur.com/bpnOxBg.png "Presentación gráficas de frecuencia y espectograma")
+
 
 
 ##Componentes del programa##
 [**Fitro:**]
-
+El filtro es utilizado para poder eliminar, dentro de lo posible, el ruido del audio y poder diferenciar mejor las partes en donde hay sonido y las que no.
+El filtro utilizado conocido como filtro pasabanda permite que eliminar todas las señales de una frecuencia fuera de un rango estipulado y para esto se utilizó uno del tipo [butterworth](https://es.wikipedia.org/wiki/Filtro_de_Butterworth).
 
 [**Decodificador:**]
+El decodificador consta de varios pasos para lograr su objetivo, los cuales serán enumerados a continuación:
+1. Se carga el audio y queda guardado en un *numpy array*.
 
+2. Este audio le es aplicada la función *filter*, la cual realiza el filtro Butterworth que disminuye el ruido, dando como resultado otro *numpy array*.
+
+3. Este nuevo audio se le aplica el valor absoluto para luego ser grafico con la función *plot_time*, mostrando un grafico que todos su valores son positivos, en el cual se puede notar levemente un indicio del codigo morse.
+
+4. Del mismo modo con las funciones *plot_frecuency* y *spectrum* se muestra la frecuencia principal del audio filtrado y el espectograma que representa todas las frecuencias en cada segundo de tiempo del audio.
+
+5. Uno de los pasos más importantes es el de crear un nuevo arreglo que solo posea unos y ceros. para esto se utiliza la función *plot_ones*, la cual basandose en un punto medio (threshold)  del ruido y la frecuencia máxima se estima si hay sonido o no, creando un gran *numpy array* más simple.
+
+6. Este nuevo *numpy array* se le calcula ventanas de numeros viendo el promedio para hacer más preciso el gráfico. El promedio si es 0 indicaba que en una ventana solo estará completa de 0's, en caso contrario estará completa de 1, dejando un *numpy array* más sólido de largas cadenas de unos y ceros seguidos.
+
+7. Esta *numpy array* de largas cadenas de ceros y unos permite calcular los largos de los puntos y las rayas y estimar cuándo hay cambios de letras en el código morse, finalmente dejando un plot como se muestra a continuación.
+
+![Gráfico2](http://i.imgur.com/pqgTfbM.png "Presentación gráficas de nueva señal de ceros y unos")
+
+8. Finalmente, con el tamaño maximo y mínimos de cadenas de uno y el tamaño mínimo de cadenas de ceros se puede crear un string que posea el mensaje en morse.
 
 [**Traductor:**]
+El traductor consiste en un diccionario, el cual tiene todas las letras y números del alfabeto y su traducción en morse, el cual recibe un string del código morse y lo traduce.
 
 
 ##Funcionalidad##
 
+![Gráfico3](http://i.imgur.com/JG43h1R.png "Captura de audio")
 El programa actual está basado, principalmente, en uno encontrado en internet creado por [haskell](https://sites.google.com/site/haskell102/home/frequency-analysis-of-audio-file-with-python-numpy-scipy). Este programa tuvo que ser estudiado y modificado para que sea capaz de trabajar frente a cualquier formato de audio del tipo punto wav.
 
 Con la ayuda de Tkinter, al ejecutar el programa, se despliega una ventana con tres botones. El botón 'Load audio', al presionarlo, abre el 'gestor de archivos' que permite seleccionar el audio con extensión wav o mp3. Se hace el llamado a la función *plot_audio*, que por medio de las funciones *information_audio* determina el tipo de audio, *convertor* realiza la conversión a wav para trabajar y *read_audio* extrae los datos del audio y la frecuencia de muestreo.
 
-Luego se realiza el filtrado de audio para eliminar el ruido, la función *filter* retorna así los datos del audio filtrados para seguir trabajando. Con esta información y la frecuencia de muestreo se hace el llamado a las funciones *plot_frecuency* que entrega la gráfica en el dominio de la frecuencia, *plot_time* entrega la gráfica en el dominio del tiempo, *spectrum* entrega la gráfica del espectrograma en cada segundo de tiempo y *plot_ones* que muestra a lo largo del tiempo los valores que toma el audio; 1 al existir sonido y 0 en su ausencia.
+Como se mencionó, luego se realiza el filtrado de audio para eliminar el ruido, la función *filter* retorna así los datos del audio filtrados para seguir trabajando. Con esta información y la frecuencia de muestreo se hace el llamado a las funciones *plot_frecuency* que entrega la gráfica en el dominio de la frecuencia, *plot_time* entrega la gráfica en el dominio del tiempo, *spectrum* entrega la gráfica del espectrograma en cada segundo de tiempo y *plot_ones* que muestra a lo largo del tiempo los valores que toma el audio; 1 al existir sonido y 0 en su ausencia.
 
 Cada gráficas se despliega por medio de Matplotlib en las distintas ventanas de la aplicación, mostrando en la ventana principal la gráfica en el tiempo y en ventanas secundarias las otras gráficas.
 
