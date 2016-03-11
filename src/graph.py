@@ -81,8 +81,13 @@ def plot_ones(data,rate,forma3):
 				uno = np.append(uno,np.zeros(piece))
 			prom = 0
 	normal = forma3.add_subplot(1,1,1)
-	normal.fill_between(range(len(uno)),uno)
+	timp=len(uno)/rate
+	t=linspace(0,timp,len(uno)) 
+	normal.fill_between(t,uno)
 	normal.set_title('Gráfico audio-morse')
 	normal.set_xlabel('Tiempo [s]')
 	normal.set_ylabel('Valor [1-0]')
 	return forma3
+
+
+	

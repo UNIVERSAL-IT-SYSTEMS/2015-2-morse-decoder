@@ -83,8 +83,11 @@ def plot_audio(forma=forma):
 	print(translated_code)
 	print()
 
+	
 	label_translate = Label(app, text="Audio translation is: "+translated_code, fg="black", font=LARGE_FONT)
 	label_translate.pack(side=tk.BOTTOM)
+	label_captured = Label(app, text=captured_code, fg="black", font=LARGE_FONT)
+	label_captured.pack(side=tk.BOTTOM)
 
 """
 PÁGINAS/VENTANAS DEL PROGRAMA
@@ -152,6 +155,6 @@ class graphs_page2(tk.Frame):
 
 
 app = application()
-app.minsize(width=1000, height=700)
-app.title("The Puntorayas Inversionistas")
+app.minsize(width=800, height=600)
+app.title("The Puntorayas Investors")
 app.mainloop()

@@ -77,10 +77,7 @@ Como se mencionó, luego se realiza el filtrado de audio para eliminar el ruido,
 
 Cada gráficas se despliega por medio de Matplotlib en las distintas ventanas de la aplicación, mostrando en la ventana principal la gráfica en el tiempo y en ventanas secundarias las otras gráficas.
 
-
-...
-
-
+Mientras tanto se realiza la decodificación del mensaje como se explicó en la sección anterior, para luego mostrar tanto el mensaje en morse como la traducción en la ventana principal.
 
 
 ##Manual de usuario##
